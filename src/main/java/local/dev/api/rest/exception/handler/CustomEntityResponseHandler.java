@@ -1,0 +1,40 @@
+package local.dev.api.rest.exception.handler;
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import local.dev.api.rest.exception.ExceptionResponse;
+import local.dev.api.rest.exception.ResourceNotFoundException;
+
+@RestControllerAdvice
+public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler{
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionResponse> handleAllException(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse(
+            new Date(),
+            ex.getMessage(),
+            request.getDescription(false)
+        );
+           return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+    
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleNotFoundException(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse(
+            new Date(),
+            ex.getMessage(),
+            request.getDescription(false)
+        );
+           return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+       }
+    
+
+    
+}

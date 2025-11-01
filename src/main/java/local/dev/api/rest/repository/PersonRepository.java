@@ -1,0 +1,12 @@
+package local.dev.api.rest.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import local.dev.api.rest.model.Person;
+
+@Repository
+public interface PersonRepository extends JpaRepository <Person, Long>{
+    
+
+}
