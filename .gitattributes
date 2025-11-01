@@ -1,0 +1,41 @@
+# Padroniza quebras de linha como LF (Unix-style) para todos os arquivos de texto
+* text=auto eol=lf
+
+# Arquivos Java
+*.java text
+
+# Arquivos de configuração e propriedades
+*.xml text
+*.yml text
+*.yaml text
+*.properties text
+
+# Arquivos de build
+*.gradle text
+*.pom text
+*.bat text eol=crlf
+*.sh text eol=lf
+
+# Arquivos de documentação
+*.md text
+*.txt text
+
+# Arquivos binários (não devem ser modificados pelo Git)
+*.jar binary
+*.war binary
+*.ear binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+
+# IDEs e ferramentas
+*.iml text
+*.launch text
+*.classpath text
+*.project text
+
+# Evita conflitos em arquivos de lock
+package-lock.json merge=union
